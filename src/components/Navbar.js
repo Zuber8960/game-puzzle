@@ -1,7 +1,6 @@
-// src/components/Navbar.js
 import React from "react";
 
-const Navbar = () => {
+const Navbar = ({ toggleChat, showChat }) => {
   return (
     <nav style={styles.nav}>
       <h1 style={styles.title}>React 3D Game</h1>
@@ -9,8 +8,11 @@ const Navbar = () => {
         <a style={styles.link} href="#game">
           Game
         </a>
-        <a style={styles.link} href="#chat">
-          Chat
+        <a
+          style={styles.link} // Use the link style for consistency
+          onClick={toggleChat}
+        >
+          {showChat ? "Close Chat" : "Open Chat"} {/* Change a text based on chat visibility */}
         </a>
       </div>
     </nav>
