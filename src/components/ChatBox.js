@@ -28,7 +28,7 @@ const ChatBox = () => {
   };
 
   return (
-    <div style={styles.chatBox}>
+    <div style={styles.container}>
       <div style={styles.messages}>
         {messages.map((msg, index) => (
           <p key={index} style={styles.message}>
@@ -43,6 +43,7 @@ const ChatBox = () => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Type a message"
+          onKeyDown={(e) => e.key === "Enter" && sendMessage()} // Send on Enter
         />
         <button style={styles.button} onClick={sendMessage}>
           Send
@@ -53,38 +54,65 @@ const ChatBox = () => {
 };
 
 const styles = {
-  chatBox: {
-    position: "absolute",
-    bottom: 0,
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    position: "fixed",
+    top: 0,
     left: 0,
-    width: "300px",
-    backgroundColor: "white",
-    border: "1px solid #ccc",
-    borderRadius: "5px",
+    height: "100%", // Full height of the screen
+    width: "300px", // Fixed width
+    backgroundColor: "#f9f9f9",
+    borderRight: "1px solid #ddd", // Divider between chat and content
+    boxShadow: "2px 0 5px rgba(0,0,0,0.1)",
+    padding: "10px",
     "@media (max-width: 600px)": {
-      width: "100%",
+      width: "100%", // On mobile, take full width
+      height: "50%", // Take only half the height of the screen on mobile
     },
   },
   messages: {
-    maxHeight: "200px",
-    overflowY: "scroll",
+    flex: 1,
     padding: "10px",
+    overflowY: "scroll",
+    scrollbarWidth: "thin", // Thin scrollbar for Firefox
+    msOverflowStyle: "none", // Disable scrollbar for IE
+    "::-webkit-scrollbar": {
+      width: "5px",
+    },
+    "::-webkit-scrollbar-thumb": {
+      backgroundColor: "#ccc",
+      borderRadius: "10px",
+    },
   },
-  message: { margin: "5px 0" },
-  inputArea: { display: "flex", padding: "10px" },
+  message: {
+    margin: "5px 0",
+    wordWrap: "break-word",
+    fontSize: "14px",
+  },
+  inputArea: {
+    display: "flex",
+    padding: "10px",
+    backgroundColor: "#fff",
+    borderTop: "1px solid #ddd",
+  },
   input: {
-    flexGrow: 1,
-    padding: "5px",
-    border: "1px solid #ccc",
+    flex: 1,
+    padding: "10px",
+    border: "1px solid #ddd",
     borderRadius: "5px",
+    fontSize: "14px",
+    outline: "none",
   },
   button: {
     marginLeft: "10px",
-    padding: "5px 10px",
+    padding: "10px 15px",
     border: "none",
-    backgroundColor: "#28a745",
-    color: "white",
+    backgroundColor: "#007bff",
+    color: "#fff",
     borderRadius: "5px",
+    cursor: "pointer",
+    fontSize: "14px",
   },
 };
 
