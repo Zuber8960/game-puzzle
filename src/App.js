@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from "react";
+import Navbar from "./components/Navbar";
+import GameCanvas from "./components/GameCanvas";
+import ChatBox from "./components/ChatBox";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar />
+      <div style={styles.container}>
+        <GameCanvas />
+        <ChatBox />
+      </div>
     </div>
   );
-}
+};
+
+const styles = {
+  container: {
+    position: "relative",
+    width: "100vw",
+    height: "100vh",
+    overflow: "hidden",
+    "@media (max-width: 600px)": {
+      flexDirection: "column",
+    },
+  },
+};
 
 export default App;
