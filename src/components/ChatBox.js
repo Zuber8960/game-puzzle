@@ -58,9 +58,9 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     position: "fixed",
-    top: 0,
+    bottom: 0,
     left: 0,
-    height: "100%", // Full height of the screen
+    height: "70%", // Full height of the screen
     width: "300px", // Fixed width
     backgroundColor: "#f9f9f9",
     borderRight: "1px solid #ddd", // Divider between chat and content
